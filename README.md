@@ -1,0 +1,2 @@
+# PaperMC Start Script
+
