@@ -2,4 +2,4 @@
 
 ## Download
 
-    wget https://git.io/JUdX8 -O start.sh
+    wget https://git.io/JUdX8 -O start.sh && chmod u+x start.sh
