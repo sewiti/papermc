@@ -1,4 +1,6 @@
-# PaperMC Start Script
+# PaperMC start script
+
+Simple easy to use shell start script that auto downloads & updates to the latest [PaperMC](https://github.com/PaperMC/Paper) server version.
 
 ## Download
 
