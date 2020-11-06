@@ -2,7 +2,7 @@
 # Auto Update & Run PaperMC server script
 
 # Settings
-version="1.16.3"
+version="1.16.4"
 
 initMem="2G"
 maxMem="2G"
