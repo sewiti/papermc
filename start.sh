@@ -4,8 +4,8 @@
 # Settings
 version="1.16.4"
 
-initMem="2G"
-maxMem="2G"
+initMem="4G"
+maxMem="4G"
 
 launchoptions="-Xms$initMem -Xmx$maxMem"
 
@@ -14,7 +14,7 @@ launchoptions="-Xms$initMem -Xmx$maxMem"
 url="https://papermc.io/api/v1/paper/$version/latest"
 
 echo "Checking for newer build..."
-build=$(curl -s $url | awk -F \"build\" '{print $2}' | awk -F \" '{print $2}')
+build=$(curl -s $url | grep -o "\"build\":\"\?[0-9]\+" | grep -o "[0-9]\+")
 
 [ -f "./paper-$version-$build.jar" ] && \
 echo "Already latest build." || {
