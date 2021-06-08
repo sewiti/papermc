@@ -2,10 +2,10 @@
 # Auto Update & Run PaperMC server script
 
 # Settings
-version="1.16.4"
+version="1.16.5"
 
-initMem="4G"
-maxMem="4G"
+initMem="1500M"
+maxMem="1500M"
 
 launchoptions="-Xms$initMem -Xmx$maxMem"
 
@@ -14,15 +14,16 @@ launchoptions="-Xms$initMem -Xmx$maxMem"
 url="https://papermc.io/api/v1/paper/$version/latest"
 
 echo "Checking for newer build..."
-build=$(curl -s $url | grep -o "\"build\":\"\?[0-9]\+" | grep -o "[0-9]\+")
+build=$(curl -s "$url" | sed -E 's/.*"build":"?([0-9]+)"?.*/\1/')
+jar="paper-$version-$build.jar"
 
-[ -f "./paper-$version-$build.jar" ] && \
-echo "Already latest build." || {
-    echo "Downloading paper-$version-$build.jar...";
-    wget -q "$url/download" -O "./paper-$version-$build.jar";
+[ -f "$jar" ] && echo "Already latest build." || \
+{
+    echo "Downloading $jar..."
+    curl -#o "$jar" "$url/download"
 }
 
 
 # Launching
 echo "Starting server..."
-java $launchoptions -jar "./paper-$version-$build.jar" nogui
+java $launchoptions -jar "$jar" nogui
