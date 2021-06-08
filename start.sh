@@ -19,6 +19,8 @@ jar="paper-$version-$build.jar"
 
 [ -f "$jar" ] && echo "Already latest build." || \
 {
+    [[ "$jar" == *error* ]] && echo "no such version: $version" && exit 1
+    
     echo "Downloading $jar..."
     curl -#o "$jar" "$url/download"
 }
