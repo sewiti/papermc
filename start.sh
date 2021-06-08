@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Auto Update & Run PaperMC server script
 
 # Settings
@@ -15,12 +15,12 @@ url="https://papermc.io/api/v1/paper/$version/latest"
 
 echo "Checking for newer build..."
 build=$(curl -s "$url" | sed -E 's/.*"build":"?([0-9]+)"?.*/\1/')
+[[ "$build" == *error* ]] && echo "no such version: $version" && exit 1
+
 jar="paper-$version-$build.jar"
 
 [ -f "$jar" ] && echo "Already latest build." || \
 {
-    [[ "$jar" == *error* ]] && echo "no such version: $version" && exit 1
-    
     echo "Downloading $jar..."
     curl -#o "$jar" "$url/download"
 }
